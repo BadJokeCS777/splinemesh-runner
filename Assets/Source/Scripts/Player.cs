@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
     public int Money { get; private set; }
 
     public event UnityAction MoneyChanged;
+    public event UnityAction Finished;
+    public event UnityAction Losed;
 
     public void StartGame()
     {
@@ -20,12 +22,14 @@ public class Player : MonoBehaviour
     {
         _follower.StopMove();
         _animations.SetFinish();
+        Finished?.Invoke();
     }
 
     public void Die()
     {
         _follower.StopMove();
         _animations.SetDie();
+        Losed?.Invoke();
     }
 
     public void AddMoney()

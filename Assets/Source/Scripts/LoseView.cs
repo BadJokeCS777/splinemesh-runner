@@ -2,21 +2,23 @@ using UnityEngine;
 
 public class LoseView : MonoBehaviour
 {
-    [SerializeField] private Obstacle _obstacle;
-    [SerializeField] private GameObject _losePanel;
-
+    [SerializeField] private Player _player;
+    [SerializeField] private Canvas _loseCanvas;
+    [SerializeField] private Canvas _gameCanvas;
+    
     private void OnEnable()
     {
-        _obstacle.Reached += OnReached;
+        _player.Losed += OnLosed;
     }
 
     private void OnDisable()
     {
-        _obstacle.Reached -= OnReached;
+        _player.Losed -= OnLosed;
     }
 
-    private void OnReached()
+    private void OnLosed()
     {
-        _losePanel.gameObject.SetActive(true);
+        _loseCanvas.gameObject.SetActive(true);
+        _gameCanvas.gameObject.SetActive(false);
     }
 }

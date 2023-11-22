@@ -1,22 +1,27 @@
+using TMPro;
 using UnityEngine;
 
 public class FinishView : MonoBehaviour
 {
-    [SerializeField] private Finish _finish;
-    [SerializeField] private GameObject _finishPanel;
+    [SerializeField] private Player _player;
+    [SerializeField] private Canvas _finishCanvas;
+    [SerializeField] private Canvas _gameCanvas;
+    [SerializeField] private TMP_Text _resultText;
 
     private void OnEnable()
     {
-        _finish.Reached += OnReached;
+        _player.Finished += OnFinished;
     }
 
     private void OnDisable()
     {
-        _finish.Reached -= OnReached;
+        _player.Finished -= OnFinished;
     }
 
-    private void OnReached()
+    private void OnFinished()
     {
-        _finishPanel.gameObject.SetActive(true);
+        _finishCanvas.gameObject.SetActive(true);
+        _gameCanvas.gameObject.SetActive(false);
+        _resultText.text = "Reward:\n" + _player.Money;
     }
 }
