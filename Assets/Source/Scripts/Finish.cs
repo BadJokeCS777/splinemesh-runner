@@ -1,18 +1,18 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Obstacle : MonoBehaviour
+public class Finish : MonoBehaviour
 {
     public event UnityAction Reached;
 
-    private bool _isReached;
+    private bool _isFinished;
     
     private void OnTriggerEnter(Collider other)
     {
-        if (!_isReached && other.TryGetComponent(out Player player))
+        if (!_isFinished && other.TryGetComponent(out Player player))
         {
-            _isReached = true;
-            player.Die();
+            _isFinished = true;
+            player.Finish();
             Reached?.Invoke();
         }
     }

@@ -6,18 +6,30 @@ public class SplineFollower : MonoBehaviour
     [SerializeField] private Spline _spline;
     [SerializeField] private float _speed;
     [SerializeField] private float _sensitivity;
+    [SerializeField] private float _startPosition;
 
     private float _splineRate = 0;
     private float _input = 0;
     private float _lastMousePosition;
+    private bool _canMove;
 
-    private void Start()
+    public void StartMove()
     {
         _lastMousePosition = Input.mousePosition.x;
+        _splineRate = _startPosition;
+        _canMove = true;
+    }
+
+    public void StopMove()
+    {
+        _canMove = false;
     }
 
     private void Update()
     {
+        if(!_canMove)
+            return;
+        
         //считываем ввод
         _input += (Input.mousePosition.x - _lastMousePosition) * _sensitivity;
         //запоминаем последнюю позицию мыши
