@@ -3,25 +3,13 @@ using UnityEngine;
 
 public class FinishView : MonoBehaviour
 {
-    [SerializeField] private Player _player;
+    [SerializeField] private Wallet _wallet;
     [SerializeField] private Canvas _finishCanvas;
-    [SerializeField] private Canvas _gameCanvas;
     [SerializeField] private TMP_Text _resultText;
 
-    private void OnEnable()
-    {
-        _player.Finished += OnFinished;
-    }
-
-    private void OnDisable()
-    {
-        _player.Finished -= OnFinished;
-    }
-
-    private void OnFinished()
+    public void Enable()
     {
         _finishCanvas.gameObject.SetActive(true);
-        _gameCanvas.gameObject.SetActive(false);
-        _resultText.text = "Reward:\n" + _player.Money;
+        _resultText.text = "Collected:\n" + _wallet.Money;
     }
 }

@@ -16,6 +16,6 @@ public class PlayerAnimations : MonoBehaviour
 
     public void SetDie()
     {
-        _animator.SetTrigger("Death");
+        _animator.SetTrigger("Die");
     }
 }

@@ -1,13 +1,12 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class GameStart : MonoBehaviour
+public class LevelStart : MonoBehaviour
 {
-    [FormerlySerializedAs("_follower")] [SerializeField] private Player _player;
+    [SerializeField] private Player _player;
     [SerializeField] private Button _button;
 
-    private void OnEnable()
+    private void Start()
     {
         _button.onClick.AddListener(OnButtonClick);
     }

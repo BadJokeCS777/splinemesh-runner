@@ -1,16 +1,13 @@
+using System;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class Player : MonoBehaviour
 {
     [SerializeField] private SplineFollower _follower;
     [SerializeField] private PlayerAnimations _animations;
-
-    public int Money { get; private set; }
-
-    public event UnityAction MoneyChanged;
-    public event UnityAction Finished;
-    public event UnityAction Losed;
+    
+    public event Action Finished;
+    public event Action Died;
 
     public void StartGame()
     {
@@ -29,12 +26,6 @@ public class Player : MonoBehaviour
     {
         _follower.StopMove();
         _animations.SetDie();
-        Losed?.Invoke();
-    }
-
-    public void AddMoney()
-    {
-        Money++;
-        MoneyChanged?.Invoke();
+        Died?.Invoke();
     }
 }
