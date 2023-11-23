@@ -1,20 +1,18 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 public class LevelStart : MonoBehaviour
 {
     [SerializeField] private Player _player;
-    [SerializeField] private Button _button;
+    [SerializeField] private StartButton _button;
 
     private void Start()
     {
-        _button.onClick.AddListener(OnButtonClick);
+        _button.Click += OnClick;
     }
 
-    private void OnButtonClick()
+    private void OnClick()
     {
-        _player.StartGame();
-        _button.onClick.RemoveListener(OnButtonClick);
-        _button.gameObject.SetActive(false);
+        _button.Click -= OnClick;
+        _player.StartLevel();
     }
 }

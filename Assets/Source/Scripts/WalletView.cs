@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class MoneyView : MonoBehaviour
+public class WalletView : MonoBehaviour
 {
     [SerializeField] private Wallet _wallet;
     [SerializeField] private TMP_Text _text;

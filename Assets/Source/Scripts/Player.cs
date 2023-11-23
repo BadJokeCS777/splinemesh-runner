@@ -4,28 +4,28 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private SplineFollower _follower;
-    [SerializeField] private PlayerAnimations _animations;
+    [SerializeField] private PlayerAnimator _animator;
     
     public event Action Finished;
     public event Action Died;
 
-    public void StartGame()
+    public void StartLevel()
     {
-        _follower.StartMove();
-        _animations.SetRun();
+        _follower.Enable();
+        _animator.SetRun();
     }
     
     public void Finish()
     {
-        _follower.StopMove();
-        _animations.SetFinish();
+        _follower.Disable();
+        _animator.SetFinish();
         Finished?.Invoke();
     }
 
     public void Die()
     {
-        _follower.StopMove();
-        _animations.SetDie();
+        _follower.Disable();
+        _animator.SetDie();
         Died?.Invoke();
     }
 }

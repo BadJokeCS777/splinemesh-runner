@@ -5,7 +5,7 @@ public class LevelEnd : MonoBehaviour
     [SerializeField] private Player _player;
     [SerializeField] private FinishView _finishView;
     [SerializeField] private LoseView _loseView;
-    [SerializeField] private GameCanvas _gameCanvas;
+    [SerializeField] private LevelCanvas _levelCanvas;
 
     private void Start()
     {
@@ -29,6 +29,6 @@ public class LevelEnd : MonoBehaviour
     {
         _player.Finished -= OnFinished;
         _player.Died -= OnDied;
-        _gameCanvas.Disable();
+        _levelCanvas.Disable();
     }
 }

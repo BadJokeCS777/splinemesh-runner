@@ -6,63 +6,47 @@ public class SplineFollower : MonoBehaviour
     [SerializeField] private Spline _spline;
     [SerializeField] private float _speed;
     [SerializeField] private float _sensitivity;
-    [SerializeField] private float _startPosition;
 
     private float _splineRate = 0;
     private float _input = 0;
     private float _lastMousePosition;
-    private bool _canMove;
 
-    public void StartMove()
+    private void Start()
     {
-        _lastMousePosition = Input.mousePosition.x;
-        _splineRate = _startPosition;
-        _canMove = true;
+        Place();
+        Disable();
     }
 
-    public void StopMove()
+    public void Enable()
     {
-        _canMove = false;
+        _lastMousePosition = Input.mousePosition.x;
+        enabled = true;
+    }
+
+    public void Disable()
+    {
+        enabled = false;
     }
 
     private void Update()
     {
-        if(!_canMove)
+        if (_splineRate >= _spline.nodes.Count - 1)
             return;
-        
-        //считываем ввод
+            
         _input += (Input.mousePosition.x - _lastMousePosition) * _sensitivity;
-        //запоминаем последнюю позицию мыши
         _lastMousePosition = Input.mousePosition.x;
-        //обрезаем значение
         _input = Mathf.Clamp(_input, -1, 1);
         
-        //изменение позиции
-        _splineRate += Time.deltaTime * _speed;
+        Place();
         
-        //если мы не дошли до конца сплайна
-        if (_splineRate < _spline.nodes.Count - 1)
-        {
-            //изменить позицию объекта
-            Place();
-        }
+        _splineRate += Time.deltaTime * _speed;
     }
 
     private void Place()
     {
-        //получаем точку сплайна на основе текущей позиции
         CurveSample sample = _spline.GetSample(_splineRate);
 
-        //передаем в локальные координаты значения с точки сплайна
-        transform.localPosition = sample.location;
+        transform.localPosition = sample.location + transform.right * _input;
         transform.localRotation = sample.Rotation;
-        
-        SetOffset();
-    }
-
-    private void SetOffset()
-    {
-        //назначаем отступ от середины сплайна
-        transform.position += transform.right * _input;
     }
 }

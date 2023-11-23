@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class GameCanvas : MonoBehaviour
+public class LevelCanvas : MonoBehaviour
 {
     public void Disable()
     {

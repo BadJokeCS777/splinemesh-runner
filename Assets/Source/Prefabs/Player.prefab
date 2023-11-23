@@ -103,7 +103,6 @@ MonoBehaviour:
   _spline: {fileID: 0}
   _speed: 0.2
   _sensitivity: 0.02
-  _startPosition: 0.1
 --- !u!114 &6495541606078888035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,7 +116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _follower: {fileID: 3783827829044887392}
-  _animations: {fileID: 1748932600372274455}
+  _animator: {fileID: 1748932600372274455}
 --- !u!114 &1748932600372274455
 MonoBehaviour:
   m_ObjectHideFlags: 0
