@@ -3,7 +3,7 @@
 public class LevelEnd : MonoBehaviour
 {
     [SerializeField] private Player _player;
-    [SerializeField] private FinishView _finishView;
+    [SerializeField] private WinView _winView;
     [SerializeField] private LoseView _loseView;
     [SerializeField] private LevelCanvas _levelCanvas;
 
@@ -16,7 +16,7 @@ public class LevelEnd : MonoBehaviour
     private void OnFinished()
     {
         End();
-        _finishView.Enable();
+        _winView.Enable();
     }
 
     private void OnDied()

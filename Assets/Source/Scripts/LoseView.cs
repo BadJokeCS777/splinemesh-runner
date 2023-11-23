@@ -2,10 +2,11 @@ using UnityEngine;
 
 public class LoseView : MonoBehaviour
 {
-    [SerializeField] private Canvas _loseCanvas;
+    [SerializeField] private EndPanelAnimation _animation;
     
     public void Enable()
     {
-        _loseCanvas.gameObject.SetActive(true);
+        gameObject.SetActive(true);
+        _animation.Play();
     }
 }
